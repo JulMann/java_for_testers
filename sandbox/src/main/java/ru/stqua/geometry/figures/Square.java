@@ -7,7 +7,7 @@ public record Square(double side) {
         System.out.println(text);
     }
 
-    public double area() {
+    public double area() {      
         return this.side * this.side;
     }
 
