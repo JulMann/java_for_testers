@@ -6,7 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class GroupCreationTest {
+public class GroupCreationTests {
     private static WebDriver driver;
 
     @BeforeEach
@@ -37,7 +37,6 @@ public class GroupCreationTest {
         driver.findElement(By.name("group_footer")).sendKeys("group footer");
         driver.findElement(By.name("submit")).click();
         driver.findElement(By.linkText("group page")).click();
-
     }
 
     private boolean isElementPresent(By locator) {
@@ -64,6 +63,5 @@ public class GroupCreationTest {
         driver.findElement(By.name("group_footer")).sendKeys("");
         driver.findElement(By.name("submit")).click();
         driver.findElement(By.linkText("group page")).click();
-
     }
 }
