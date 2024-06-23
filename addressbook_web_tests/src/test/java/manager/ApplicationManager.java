@@ -45,7 +45,6 @@ public class ApplicationManager {
         return groups;
     }
 
-
     protected boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);

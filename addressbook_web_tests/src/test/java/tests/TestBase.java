@@ -13,5 +13,4 @@ public class TestBase {
             app.init(System.getProperty("browser", "edge"));
         }
     }
-
 }
