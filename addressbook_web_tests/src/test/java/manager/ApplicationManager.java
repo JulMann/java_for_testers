@@ -5,6 +5,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class ApplicationManager {
@@ -18,6 +19,8 @@ public class ApplicationManager {
                 driver = new ChromeDriver();
             } else if ("firefox".equals(browser))  {
                 driver = new FirefoxDriver();
+            } else if ("edge".equals(browser)) {
+                driver = new EdgeDriver();
             } else {
                 throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
             }
