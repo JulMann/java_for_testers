@@ -12,12 +12,13 @@ public class ApplicationManager {
     protected WebDriver driver;
     private LoginHelper session;
     private GroupHelper groups;
+    private ContactHelper contacts;
 
     public void init(String browser) {
         if (driver == null) {
             if ("chrome".equals(browser)) {
                 driver = new ChromeDriver();
-            } else if ("firefox".equals(browser))  {
+            } else if ("firefox".equals(browser)) {
                 driver = new FirefoxDriver();
             } else if ("edge".equals(browser)) {
                 driver = new EdgeDriver();
@@ -45,6 +46,13 @@ public class ApplicationManager {
         return groups;
     }
 
+    public ContactHelper contacts() {
+        if (contacts == null) {
+            contacts = new ContactHelper(this);
+        }
+        return contacts;
+    }
+
     protected boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
@@ -53,5 +61,4 @@ public class ApplicationManager {
             return false;
         }
     }
-
 }

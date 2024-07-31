@@ -1,6 +1,7 @@
 package manager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class HelperBase {
 
@@ -18,5 +19,13 @@ public class HelperBase {
 
     protected void click(By locator) {
         manager.driver.findElement(locator).click();
+    }
+
+    protected void dropdownType(String num, String contact) {
+        manager.driver.findElement(By.name(num)).click();
+        {
+            WebElement dropdown = manager.driver.findElement(By.name(num));
+            dropdown.findElement(By.xpath("//option[. = '" + contact + "']")).click();
+        }
     }
 }

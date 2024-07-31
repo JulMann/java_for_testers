@@ -2,8 +2,6 @@ package manager;
 
 import org.openqa.selenium.By;
 
-import java.net.http.HttpRequest;
-
 public class LoginHelper extends HelperBase {
 
     public LoginHelper(ApplicationManager manager) {
