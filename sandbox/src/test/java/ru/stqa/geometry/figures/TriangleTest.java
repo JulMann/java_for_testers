@@ -1,7 +1,8 @@
-package ru.stqua.geometry.figures;
+package ru.stqa.geometry.figures;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.stqua.geometry.figures.Triangle;
 
 public class TriangleTest {
     @Test
