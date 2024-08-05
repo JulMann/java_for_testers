@@ -12,11 +12,11 @@ public class TestBase {
     public void setUp() {
         if (app == null) {
             app = new ApplicationManager();
-            app.init(System.getProperty("browser", "edge"));
+            app.init(System.getProperty("browser", "chrome"));
         }
     }
 
-    public String randomString(int n) {
+    public static String randomString(int n) {
         var result = "";
         var rnd = new Random();
         for (int i = 0; i < n; i++) {
