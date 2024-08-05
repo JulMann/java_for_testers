@@ -3,6 +3,7 @@ package tests;
 import manager.ApplicationManager;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.util.Calendar;
 import java.util.Random;
 
 public class TestBase {
@@ -21,6 +22,15 @@ public class TestBase {
         var rnd = new Random();
         for (int i = 0; i < n; i++) {
             result = result + (char)('a' + rnd.nextInt(26));
+        }
+        return result;
+    }
+
+    public static String randomNum(int n) {
+        var result = "";
+        var rnd = new Random();
+        for (int i = 0; i < n; i++) {
+            result = result + (char)('0' + rnd.nextInt(10));
         }
         return result;
     }
