@@ -18,7 +18,7 @@ public class ContactRemovalTests extends TestBase {
     }
 
     @Test
-    public void canRemoveAllContact() {
+    public void canRemoveAllContacts() {
         if (app.contacts().getCount() == 0) {
             app.contacts().createContact(new ContactData("firstname", "middlename", "lastname", "nickname", "email", "email2", "email3", "address", "home_tel", "mobile_tel", "work_tel", "fax", "1", "January", "2001"));
         }

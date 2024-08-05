@@ -18,6 +18,17 @@ public class ContactCreationTests extends TestBase {
     }
 
     @Test
+    public void canCreateMultipleContact() {
+        int n = 3;
+        int contactCount = app.contacts().getCount();
+        for (int i = 0; i < n; i++) {
+            app.contacts().createContact(new ContactData(randomString(i * 10), randomString(i * 10), randomString(i * 10), randomString(i * 10), "email", "email2", "email3", "address", "home_tel", "mobile_tel", "work_tel", "fax", "1", "January", "2001"));
+        }
+        int newContactCount = app.contacts().getCount();
+        Assertions.assertEquals(contactCount + n, newContactCount);
+    }
+
+    @Test
     public void canCreateContactWithAllEmptyField() {
         app.contacts().createContact(new ContactData());
     }
