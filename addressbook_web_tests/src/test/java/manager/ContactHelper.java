@@ -1,7 +1,11 @@
 package manager;
 
 import model.ContactData;
+import model.GroupData;
 import org.openqa.selenium.By;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -19,25 +23,15 @@ public class ContactHelper extends HelperBase {
 
     private void fillContactForm(ContactData contact) {
         type(By.name("firstname"), contact.firstname());
-        type(By.name("middlename"), contact.middlename());
         type(By.name("lastname"), contact.lastname());
-        type(By.name("nickname"), contact.nickname());
         type(By.name("email"), contact.email());
-        type(By.name("email2"), contact.email2());
-        type(By.name("email3"), contact.email3());
         type(By.name("address"), contact.address());
-        type(By.name("home"), contact.home_tel());
         type(By.name("mobile"), contact.mobile_tel());
-        type(By.name("work"), contact.work_tel());
-        type(By.name("fax"), contact.fax());
-        dropdownType("bday", contact.day());
-        dropdownType("bmonth", contact.month());
-        type(By.name("byear"), contact.year());
     }
 
-    public void removeContact() {
+    public void removeContact(ContactData contact) {
         openContactPage();
-        selectContact();
+        selectContact(contact);
         removeSelectedContacts();
         openContactPage();
     }
@@ -69,8 +63,8 @@ public class ContactHelper extends HelperBase {
         return manager.isElementPresent(By.name("selected[]"));
     }
 
-    private void selectContact() {
-        click(By.name("selected[]"));
+    private void selectContact(ContactData contact) {
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
 
     public int getCount() {
@@ -89,5 +83,21 @@ public class ContactHelper extends HelperBase {
         for (var checkbox : checkboxes) {
             checkbox.click();
         }
+    }
+
+    public List<ContactData> getList() {
+        openContactPage();
+        var contacts = new ArrayList<ContactData>();
+        var trs = manager.driver.findElements(By.xpath("//td/input[@type='checkbox']")).size();
+        for (int i = 2; i <= trs + 1; i++) {
+                var checkbox = manager.driver.findElement(By.xpath("//tr[" + i + "]/td[1]/input[@type='checkbox']"));
+                var id = checkbox.getAttribute("id");
+                var td2 = manager.driver.findElement(By.xpath("//tr[" + i + "]/td[2]"));
+                var lastname = td2.getText();
+                var td3 = manager.driver.findElement(By.xpath("//tr[" + i + "]/td[3]"));
+                var firstname = td3.getText();
+                contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
+        }
+        return contacts;
     }
 }
