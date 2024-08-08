@@ -36,6 +36,19 @@ public class GroupHelper extends HelperBase {
         returnToGroupsPage();
     }
 
+    public List<GroupData> getList() {
+        openGroupsPage();
+        var groups = new ArrayList<GroupData>();
+        var spans = manager.driver.findElements(By.cssSelector("span.group"));
+        for (var span : spans) {
+            var name = span.getText();
+            var checkbox = span.findElement(By.name("selected[]"));
+            var id = checkbox.getAttribute("value");
+            groups.add(new GroupData().withId(id).withName(name));
+        }
+        return groups;
+    }
+
     public void openGroupsPage() {
         if (!manager.isElementPresent(By.name("new"))) {
             click(By.linkText("groups"));
@@ -92,18 +105,5 @@ public class GroupHelper extends HelperBase {
         for (var checkbox : checkboxes) {
             checkbox.click();
         }
-    }
-
-    public List<GroupData> getList() {
-        openGroupsPage();
-        var groups = new ArrayList<GroupData>();
-        var spans = manager.driver.findElements(By.cssSelector("span.group"));
-        for (var span : spans) {
-            var name = span.getText();
-            var checkbox = span.findElement(By.name("selected[]"));
-            var id = checkbox.getAttribute("value");
-            groups.add(new GroupData().withId(id).withName(name));
-        }
-        return groups;
     }
 }

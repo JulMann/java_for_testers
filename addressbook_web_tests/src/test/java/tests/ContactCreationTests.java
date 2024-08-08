@@ -34,7 +34,7 @@ public class ContactCreationTests extends TestBase {
             result.add(new ContactData()
                     .withFirstname(randomString(i * 10))
                     .withLastname(randomString(i * 10))
-                    .withEmail(randomString(i * 10) + "@" + randomString(i * 4) + "." + randomString(3))
+                    .withEmail(randomString(i * 5) + "@" + randomString(i * 4) + "." + randomString(3))
                     .withAddress(randomString(i * 10))
                     .withMobileTel(randomNum(11)));
         }
@@ -52,10 +52,7 @@ public class ContactCreationTests extends TestBase {
         };
         newContacts.sort(compareById);
         var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id())
-                .withEmail("")
-                .withAddress("")
-                .withMobileTel(""));
+        expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id()));
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts, expectedList);
     }
